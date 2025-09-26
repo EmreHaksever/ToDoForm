@@ -35,10 +35,10 @@
             // dataGridViewTasks
             // 
             dataGridViewTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTasks.Location = new Point(180, 53);
+            dataGridViewTasks.Location = new Point(3, 0);
             dataGridViewTasks.Name = "dataGridViewTasks";
             dataGridViewTasks.RowHeadersWidth = 51;
-            dataGridViewTasks.Size = new Size(300, 188);
+            dataGridViewTasks.Size = new Size(798, 450);
             dataGridViewTasks.TabIndex = 0;
             // 
             // DashboardForm
