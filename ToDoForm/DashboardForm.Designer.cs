@@ -17,106 +17,139 @@
 
         private void InitializeComponent()
         {
-            dataGridViewTasks = new DataGridView();
-            buttonAddTask = new Button();
-            textBoxTaskTitle = new TextBox();
-            textBoxTaskDescription = new TextBox();
-            dateTimePickerDueDate = new DateTimePicker();
-            comboBoxUser = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewTasks).BeginInit();
-            SuspendLayout();
-            // 
-            // dataGridViewTasks
-            // 
-            dataGridViewTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTasks.Location = new Point(250, 20);
-            dataGridViewTasks.Name = "dataGridViewTasks";
-            dataGridViewTasks.RowHeadersWidth = 51;
-            dataGridViewTasks.Size = new Size(520, 410);
-            dataGridViewTasks.TabIndex = 0;
-            // 
-            // buttonAddTask
-            // 
-            buttonAddTask.BackColor = Color.Orange;
-            buttonAddTask.Location = new Point(20, 220);
-            buttonAddTask.Name = "buttonAddTask";
-            buttonAddTask.Size = new Size(200, 40);
-            buttonAddTask.TabIndex = 5;
-            buttonAddTask.Text = "Add Task";
-            buttonAddTask.UseVisualStyleBackColor = false;
-            buttonAddTask.Click += buttonAddTask_Click;
+            this.dataGridViewTasks = new DataGridView();
+            this.buttonAddTask = new Button();
+            this.buttonDeleteTask = new Button();
+            this.textBoxTaskTitle = new TextBox();
+            this.textBoxTaskDescription = new TextBox();
+            this.dateTimePickerDueDate = new DateTimePicker();
+            this.comboBoxUser = new ComboBox();
+            this.labelTitle = new Label();
+            this.SuspendLayout();
 
-            // buttonDeleteTask
-            buttonDeleteTask = new Button();
-            buttonDeleteTask.Location = new Point(20, 280);
-            buttonDeleteTask.Size = new Size(200, 40);
-            buttonDeleteTask.Name = "buttonDeleteTask";
-            buttonDeleteTask.TabIndex = 6;
-            buttonDeleteTask.Text = "Delete Task";
-            buttonDeleteTask.UseVisualStyleBackColor = true;
-            buttonDeleteTask.Click += buttonDeleteTask_Click;
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelTitle.ForeColor = Color.CornflowerBlue;
+            this.labelTitle.Location = new Point(20, 20);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new Size(180, 41);
+            this.labelTitle.Text = "Dashboard";
 
-            
-            Controls.Add(buttonDeleteTask);
+            // 
+            // comboBoxUser
+            // 
+            this.comboBoxUser.BackColor = Color.WhiteSmoke;
+            this.comboBoxUser.ForeColor = Color.Black;
+            this.comboBoxUser.Location = new Point(20, 70);
+            this.comboBoxUser.Name = "comboBoxUser";
+            this.comboBoxUser.Size = new Size(200, 28);
+            this.comboBoxUser.TabIndex = 0;
+            this.comboBoxUser.SelectedIndexChanged += comboBoxUser_SelectedIndexChanged;
 
             // 
             // textBoxTaskTitle
             // 
-            textBoxTaskTitle.Location = new Point(20, 70);
-            textBoxTaskTitle.Name = "textBoxTaskTitle";
-            textBoxTaskTitle.Size = new Size(200, 27);
-            textBoxTaskTitle.TabIndex = 2;
+            this.textBoxTaskTitle.BackColor = Color.WhiteSmoke;
+            this.textBoxTaskTitle.ForeColor = Color.Black;
+            this.textBoxTaskTitle.Location = new Point(20, 120);
+            this.textBoxTaskTitle.Name = "textBoxTaskTitle";
+            this.textBoxTaskTitle.PlaceholderText = "Görev Başlığı";
+            this.textBoxTaskTitle.Size = new Size(200, 27);
+            this.textBoxTaskTitle.TabIndex = 1;
+
             // 
             // textBoxTaskDescription
             // 
-            textBoxTaskDescription.Location = new Point(20, 120);
-            textBoxTaskDescription.Name = "textBoxTaskDescription";
-            textBoxTaskDescription.Size = new Size(200, 27);
-            textBoxTaskDescription.TabIndex = 3;
+            this.textBoxTaskDescription.BackColor = Color.WhiteSmoke;
+            this.textBoxTaskDescription.ForeColor = Color.Black;
+            this.textBoxTaskDescription.Location = new Point(20, 170);
+            this.textBoxTaskDescription.Name = "textBoxTaskDescription";
+            this.textBoxTaskDescription.PlaceholderText = "Görev Açıklaması";
+            this.textBoxTaskDescription.Size = new Size(200, 27);
+            this.textBoxTaskDescription.TabIndex = 2;
+
             // 
             // dateTimePickerDueDate
             // 
-            dateTimePickerDueDate.Location = new Point(20, 170);
-            dateTimePickerDueDate.Name = "dateTimePickerDueDate";
-            dateTimePickerDueDate.Size = new Size(200, 27);
-            dateTimePickerDueDate.TabIndex = 4;
+            this.dateTimePickerDueDate.Location = new Point(20, 220);
+            this.dateTimePickerDueDate.Name = "dateTimePickerDueDate";
+            this.dateTimePickerDueDate.Size = new Size(200, 27);
+            this.dateTimePickerDueDate.TabIndex = 3;
+
             // 
-            // comboBoxUser
+            // buttonAddTask
             // 
-            comboBoxUser.BackColor = Color.Orange;
-            comboBoxUser.Location = new Point(20, 20);
-            comboBoxUser.Name = "comboBoxUser";
-            comboBoxUser.Size = new Size(200, 28);
-            comboBoxUser.TabIndex = 1;
-            comboBoxUser.SelectedIndexChanged += comboBoxUser_SelectedIndexChanged;
+            this.buttonAddTask.BackColor = Color.CornflowerBlue;
+            this.buttonAddTask.ForeColor = Color.White;
+            this.buttonAddTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonAddTask.Location = new Point(20, 270);
+            this.buttonAddTask.Name = "buttonAddTask";
+            this.buttonAddTask.Size = new Size(200, 40);
+            this.buttonAddTask.TabIndex = 4;
+            this.buttonAddTask.Text = "Görev Ekle";
+            this.buttonAddTask.UseVisualStyleBackColor = false;
+            this.buttonAddTask.Click += buttonAddTask_Click;
+
+            // 
+            // buttonDeleteTask
+            // 
+            this.buttonDeleteTask.BackColor = Color.CornflowerBlue;
+            this.buttonDeleteTask.ForeColor = Color.White;
+            this.buttonDeleteTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonDeleteTask.Location = new Point(20, 320);
+            this.buttonDeleteTask.Name = "buttonDeleteTask";
+            this.buttonDeleteTask.Size = new Size(200, 40);
+            this.buttonDeleteTask.TabIndex = 5;
+            this.buttonDeleteTask.Text = "Görev Sil";
+            this.buttonDeleteTask.UseVisualStyleBackColor = false;
+            this.buttonDeleteTask.Click += buttonDeleteTask_Click;
+
+            // 
+            // dataGridViewTasks
+            // 
+            this.dataGridViewTasks.BackgroundColor = Color.WhiteSmoke;
+            this.dataGridViewTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTasks.Location = new Point(250, 70);
+            this.dataGridViewTasks.Name = "dataGridViewTasks";
+            this.dataGridViewTasks.RowHeadersWidth = 51;
+            this.dataGridViewTasks.Size = new Size(520, 410);
+            this.dataGridViewTasks.TabIndex = 6;
+
             // 
             // DashboardForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(comboBoxUser);
-            Controls.Add(textBoxTaskTitle);
-            Controls.Add(textBoxTaskDescription);
-            Controls.Add(dateTimePickerDueDate);
-            Controls.Add(buttonAddTask);
-            Controls.Add(dataGridViewTasks);
-            Name = "DashboardForm";
-            Text = "DashboardForm";
-            Load += DashboardForm_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewTasks).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(8F, 20F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(800, 500);
+            this.Controls.Add(this.labelTitle);
+            this.Controls.Add(this.comboBoxUser);
+            this.Controls.Add(this.textBoxTaskTitle);
+            this.Controls.Add(this.textBoxTaskDescription);
+            this.Controls.Add(this.dateTimePickerDueDate);
+            this.Controls.Add(this.buttonAddTask);
+            this.Controls.Add(this.buttonDeleteTask);
+            this.Controls.Add(this.dataGridViewTasks);
+            this.Name = "DashboardForm";
+            this.Text = "ToDo Dashboard";
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Load += DashboardForm_Load;
+            ((System.ComponentModel.ISupportInitialize)this.dataGridViewTasks).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridViewTasks;
         private Button buttonAddTask;
+        private Button buttonDeleteTask;
         private TextBox textBoxTaskTitle;
         private TextBox textBoxTaskDescription;
         private DateTimePicker dateTimePickerDueDate;
         private ComboBox comboBoxUser;
-        private Button buttonDeleteTask;
+        private Label labelTitle;
     }
 }

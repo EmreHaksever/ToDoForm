@@ -2,15 +2,8 @@
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,71 +15,93 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            textBoxUsername = new TextBox();
-            textBoxPassword = new TextBox();
-            labelMessage = new Label();
-            buttonLogin = new Button();
-            SuspendLayout();
+            this.textBoxUsername = new TextBox();
+            this.textBoxPassword = new TextBox();
+            this.labelMessage = new Label();
+            this.buttonLogin = new Button();
+            this.labelTitle = new Label();
+            this.SuspendLayout();
+
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelTitle.ForeColor = Color.CornflowerBlue;
+            this.labelTitle.Location = new Point(310, 50);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new Size(180, 46);
+            this.labelTitle.Text = "ToDo Login";
+            this.labelTitle.TextAlign = ContentAlignment.MiddleCenter;
+
             // 
             // textBoxUsername
             // 
-            textBoxUsername.BackColor = SystemColors.ActiveBorder;
-            textBoxUsername.ForeColor = Color.Yellow;
-            textBoxUsername.Location = new Point(316, 131);
-            textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new Size(122, 27);
-            textBoxUsername.TabIndex = 0;
+            this.textBoxUsername.BackColor = Color.WhiteSmoke;
+            this.textBoxUsername.ForeColor = Color.Black;
+            this.textBoxUsername.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxUsername.Location = new Point(300, 130);
+            this.textBoxUsername.Name = "textBoxUsername";
+            this.textBoxUsername.PlaceholderText = "Kullanıcı Adı"; // Yeni
+            this.textBoxUsername.Size = new Size(200, 30);
+            this.textBoxUsername.TabIndex = 0;
+
             // 
             // textBoxPassword
             // 
-            textBoxPassword.BackColor = SystemColors.ActiveBorder;
-            textBoxPassword.Location = new Point(316, 184);
-            textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(122, 27);
-            textBoxPassword.TabIndex = 1;
-            // 
-            // labelMessage
-            // 
-            labelMessage.AutoSize = true;
-            labelMessage.Location = new Point(332, 323);
-            labelMessage.Name = "labelMessage";
-            labelMessage.Size = new Size(0, 20);
-            labelMessage.TabIndex = 2;
-            labelMessage.Tag = "Message";
-            labelMessage.Click += label1_Click;
+            this.textBoxPassword.BackColor = Color.WhiteSmoke;
+            this.textBoxPassword.ForeColor = Color.Black;
+            this.textBoxPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxPassword.Location = new Point(300, 180);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PlaceholderText = "Şifre"; // Yeni
+            this.textBoxPassword.PasswordChar = '●';
+            this.textBoxPassword.Size = new Size(200, 30);
+            this.textBoxPassword.TabIndex = 1;
+
             // 
             // buttonLogin
             // 
-            buttonLogin.BackColor = Color.CornflowerBlue;
-            buttonLogin.ForeColor = Color.Crimson;
-            buttonLogin.Location = new Point(316, 231);
-            buttonLogin.Name = "buttonLogin";
-            buttonLogin.Size = new Size(122, 29);
-            buttonLogin.TabIndex = 3;
-            buttonLogin.Text = "Login";
-            buttonLogin.UseVisualStyleBackColor = false;
-            buttonLogin.Click += buttonLogin_Click;
+            this.buttonLogin.BackColor = Color.CornflowerBlue;
+            this.buttonLogin.ForeColor = Color.White;
+            this.buttonLogin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.buttonLogin.Location = new Point(300, 230);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new Size(200, 35);
+            this.buttonLogin.TabIndex = 2;
+            this.buttonLogin.Text = "Giriş Yap";
+            this.buttonLogin.UseVisualStyleBackColor = false;
+            this.buttonLogin.Click += new EventHandler(this.buttonLogin_Click);
+
+            // 
+            // labelMessage
+            // 
+            this.labelMessage.AutoSize = true;
+            this.labelMessage.ForeColor = Color.Red;
+            this.labelMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelMessage.Location = new Point(300, 280);
+            this.labelMessage.Name = "labelMessage";
+            this.labelMessage.Size = new Size(0, 20);
+            this.labelMessage.TabIndex = 3;
+
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(labelMessage);
-            Controls.Add(buttonLogin);
-            Controls.Add(textBoxPassword);
-            Controls.Add(textBoxUsername);
-            Name = "Form1";
-            Tag = "M";
-            Text = "Form1";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(8F, 20F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(800, 450);
+            this.Controls.Add(this.labelTitle);
+            this.Controls.Add(this.textBoxUsername);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.buttonLogin);
+            this.Controls.Add(this.labelMessage);
+            this.Name = "Form1";
+            this.Text = "ToDo Application - Login";
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
@@ -95,5 +110,6 @@
         private TextBox textBoxPassword;
         private Label labelMessage;
         private Button buttonLogin;
+        private Label labelTitle;
     }
 }
