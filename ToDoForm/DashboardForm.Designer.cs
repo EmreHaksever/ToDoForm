@@ -2,15 +2,8 @@
 {
     partial class DashboardForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             dataGridViewTasks = new DataGridView();
@@ -40,50 +29,51 @@
             // dataGridViewTasks
             // 
             dataGridViewTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTasks.Location = new Point(3, 0);
+            dataGridViewTasks.Location = new Point(250, 20);
             dataGridViewTasks.Name = "dataGridViewTasks";
             dataGridViewTasks.RowHeadersWidth = 51;
-            dataGridViewTasks.Size = new Size(798, 450);
+            dataGridViewTasks.Size = new Size(520, 410);
             dataGridViewTasks.TabIndex = 0;
             // 
             // buttonAddTask
             // 
-            buttonAddTask.Location = new Point(3, 353);
+            buttonAddTask.BackColor = Color.Orange;
+            buttonAddTask.Location = new Point(20, 220);
             buttonAddTask.Name = "buttonAddTask";
-            buttonAddTask.Size = new Size(94, 29);
-            buttonAddTask.TabIndex = 1;
+            buttonAddTask.Size = new Size(200, 40);
+            buttonAddTask.TabIndex = 5;
             buttonAddTask.Text = "Add Task";
-            buttonAddTask.UseVisualStyleBackColor = true;
+            buttonAddTask.UseVisualStyleBackColor = false;
             buttonAddTask.Click += buttonAddTask_Click;
             // 
             // textBoxTaskTitle
             // 
-            textBoxTaskTitle.Location = new Point(3, 209);
+            textBoxTaskTitle.Location = new Point(20, 70);
             textBoxTaskTitle.Name = "textBoxTaskTitle";
-            textBoxTaskTitle.Size = new Size(125, 27);
+            textBoxTaskTitle.Size = new Size(200, 27);
             textBoxTaskTitle.TabIndex = 2;
             // 
             // textBoxTaskDescription
             // 
-            textBoxTaskDescription.Location = new Point(3, 255);
+            textBoxTaskDescription.Location = new Point(20, 120);
             textBoxTaskDescription.Name = "textBoxTaskDescription";
-            textBoxTaskDescription.Size = new Size(125, 27);
+            textBoxTaskDescription.Size = new Size(200, 27);
             textBoxTaskDescription.TabIndex = 3;
             // 
             // dateTimePickerDueDate
             // 
-            dateTimePickerDueDate.Location = new Point(3, 305);
+            dateTimePickerDueDate.Location = new Point(20, 170);
             dateTimePickerDueDate.Name = "dateTimePickerDueDate";
-            dateTimePickerDueDate.Size = new Size(250, 27);
+            dateTimePickerDueDate.Size = new Size(200, 27);
             dateTimePickerDueDate.TabIndex = 4;
             // 
             // comboBoxUser
             // 
-            comboBoxUser.FormattingEnabled = true;
-            comboBoxUser.Location = new Point(3, 159);
+            comboBoxUser.BackColor = Color.Orange;
+            comboBoxUser.Location = new Point(20, 20);
             comboBoxUser.Name = "comboBoxUser";
-            comboBoxUser.Size = new Size(151, 28);
-            comboBoxUser.TabIndex = 5;
+            comboBoxUser.Size = new Size(200, 28);
+            comboBoxUser.TabIndex = 1;
             comboBoxUser.SelectedIndexChanged += comboBoxUser_SelectedIndexChanged;
             // 
             // DashboardForm
@@ -92,9 +82,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(comboBoxUser);
-            Controls.Add(dateTimePickerDueDate);
-            Controls.Add(textBoxTaskDescription);
             Controls.Add(textBoxTaskTitle);
+            Controls.Add(textBoxTaskDescription);
+            Controls.Add(dateTimePickerDueDate);
             Controls.Add(buttonAddTask);
             Controls.Add(dataGridViewTasks);
             Name = "DashboardForm";

@@ -36,14 +36,17 @@
             // 
             // textBoxUsername
             // 
-            textBoxUsername.Location = new Point(490, 204);
+            textBoxUsername.BackColor = SystemColors.ActiveBorder;
+            textBoxUsername.ForeColor = Color.Yellow;
+            textBoxUsername.Location = new Point(316, 131);
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(122, 27);
             textBoxUsername.TabIndex = 0;
             // 
             // textBoxPassword
             // 
-            textBoxPassword.Location = new Point(490, 263);
+            textBoxPassword.BackColor = SystemColors.ActiveBorder;
+            textBoxPassword.Location = new Point(316, 184);
             textBoxPassword.Name = "textBoxPassword";
             textBoxPassword.Size = new Size(122, 27);
             textBoxPassword.TabIndex = 1;
@@ -51,21 +54,23 @@
             // labelMessage
             // 
             labelMessage.AutoSize = true;
-            labelMessage.Location = new Point(522, 354);
+            labelMessage.Location = new Point(338, 282);
             labelMessage.Name = "labelMessage";
-            labelMessage.Size = new Size(67, 20);
+            labelMessage.Size = new Size(0, 20);
             labelMessage.TabIndex = 2;
-            labelMessage.Text = "Message";
+            labelMessage.Tag = "Message";
             labelMessage.Click += label1_Click;
             // 
             // buttonLogin
             // 
-            buttonLogin.Location = new Point(507, 296);
+            buttonLogin.BackColor = Color.CornflowerBlue;
+            buttonLogin.ForeColor = Color.Crimson;
+            buttonLogin.Location = new Point(316, 241);
             buttonLogin.Name = "buttonLogin";
-            buttonLogin.Size = new Size(105, 29);
+            buttonLogin.Size = new Size(122, 29);
             buttonLogin.TabIndex = 3;
             buttonLogin.Text = "Login";
-            buttonLogin.UseVisualStyleBackColor = true;
+            buttonLogin.UseVisualStyleBackColor = false;
             buttonLogin.Click += buttonLogin_Click;
             // 
             // Form1
@@ -78,6 +83,7 @@
             Controls.Add(textBoxPassword);
             Controls.Add(textBoxUsername);
             Name = "Form1";
+            Tag = "M";
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
