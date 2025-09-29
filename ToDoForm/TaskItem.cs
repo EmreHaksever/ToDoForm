@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ToDoForm
@@ -15,12 +16,52 @@ namespace ToDoForm
         public string Description { get; set; }
 
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        [JsonConverter(typeof(StatusConverter))]  // Bu satırı ekleyin
+        public int Status { get; set; }
 
         [JsonPropertyName("dueDate")]
         public DateTime DueDate { get; set; }
 
         [JsonPropertyName("userName")]
-        public string UserName { get; set; } // backend buna bakıyor
+        public string UserName { get; set; }
+
+        public string StatusText
+        {
+            get
+            {
+                return Status switch
+                {
+                    0 => "Todo",
+                    1 => "InProgress",
+                    2 => "Done",
+                    _ => "Unknown"
+                };
+            }
+        }
+    }
+
+    // Custom converter sınıfını aynı dosyaya ekleyin
+    public class StatusConverter : JsonConverter<int>
+    {
+        public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                string value = reader.GetString();
+                return value switch
+                {
+                    "Todo" => 0,
+                    "InProgress" => 1,
+                    "Done" => 2,
+                    _ => int.TryParse(value, out int result) ? result : 0
+                };
+            }
+            return reader.GetInt32();
+        }
+
+        public override void Write(Utf8JsonWriter writer, int value, JsonSerializerOptions options)
+        {
+            writer.WriteNumberValue(value);
+        }
     }
 }

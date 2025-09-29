@@ -73,14 +73,21 @@ namespace ToDoForm
             {
                 client.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Session.Token);
-
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync("https://localhost:7136/api/task");
                     if (response.IsSuccessStatusCode)
                     {
                         string jsonData = await response.Content.ReadAsStringAsync();
-                        var tasks = JsonSerializer.Deserialize<List<TaskItem>>(jsonData);
+
+                        // JsonSerializerOptions ekleyin
+                        var options = new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true,
+                            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString
+                        };
+
+                        var tasks = JsonSerializer.Deserialize<List<TaskItem>>(jsonData, options);
                         dataGridViewTasks.DataSource = tasks;
                     }
                     else
@@ -91,7 +98,7 @@ namespace ToDoForm
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Hata: " + ex.Message);
+                    MessageBox.Show("Hata: " + ex.Message + "\n\nDetay: " + ex.InnerException?.Message);
                 }
             }
         }
@@ -101,13 +108,13 @@ namespace ToDoForm
         {
             if (comboBoxUser.SelectedItem is UserItem selectedUser)
             {
-                TaskItem newTask = new TaskItem
+                var newTask = new
                 {
-                    Title = textBoxTaskTitle.Text,
-                    Description = textBoxTaskDescription.Text,
-                    DueDate = dateTimePickerDueDate.Value,
-                    Status = "New",
-                    UserName = selectedUser.Name  // userId yerine userName
+                    title = textBoxTaskTitle.Text,
+                    description = textBoxTaskDescription.Text,
+                    dueDate = dateTimePickerDueDate.Value,
+                    status = 0,  // 0 = Todo
+                    userId = selectedUser.Id  // userName yerine userId gönderin
                 };
 
                 using (HttpClient client = new HttpClient())
@@ -125,6 +132,11 @@ namespace ToDoForm
                     {
                         MessageBox.Show("✅ Task eklendi!");
                         await RefreshTasks();
+
+                        // Formu temizle
+                        textBoxTaskTitle.Clear();
+                        textBoxTaskDescription.Clear();
+                        dateTimePickerDueDate.Value = DateTime.Now;
                     }
                     else
                     {
