@@ -54,7 +54,7 @@
             // labelMessage
             // 
             labelMessage.AutoSize = true;
-            labelMessage.Location = new Point(338, 282);
+            labelMessage.Location = new Point(332, 323);
             labelMessage.Name = "labelMessage";
             labelMessage.Size = new Size(0, 20);
             labelMessage.TabIndex = 2;
@@ -65,7 +65,7 @@
             // 
             buttonLogin.BackColor = Color.CornflowerBlue;
             buttonLogin.ForeColor = Color.Crimson;
-            buttonLogin.Location = new Point(316, 241);
+            buttonLogin.Location = new Point(316, 231);
             buttonLogin.Name = "buttonLogin";
             buttonLogin.Size = new Size(122, 29);
             buttonLogin.TabIndex = 3;
@@ -78,8 +78,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(buttonLogin);
             Controls.Add(labelMessage);
+            Controls.Add(buttonLogin);
             Controls.Add(textBoxPassword);
             Controls.Add(textBoxUsername);
             Name = "Form1";

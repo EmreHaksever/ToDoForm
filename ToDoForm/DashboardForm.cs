@@ -18,12 +18,65 @@ namespace ToDoForm
             
             comboBoxUser.SelectedIndexChanged += comboBoxUser_SelectedIndexChanged;
         }
+        private bool isAdmin = false; // form içinde bir field olarak tanımla
+
+        private async Task CheckUserRole()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Session.Token);
+
+                try
+                {
+                    // Token ile kendi kullanıcı bilgilerini al
+                    HttpResponseMessage response = await client.GetAsync("https://localhost:7136/api/user/me");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonData = await response.Content.ReadAsStringAsync();
+
+                        // Tek kullanıcı objesi olarak deserialize et
+                        var currentUser = JsonSerializer.Deserialize<UserItem>(jsonData, new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
+
+                        if (currentUser != null)
+                        {
+                            isAdmin = currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Rol bilgisi alınamadı: " + ex.Message);
+                    MessageBox.Show("Role: " + isAdmin);
+                }
+            }
+        }
+
+
+
 
         private async void DashboardForm_Load(object sender, EventArgs e)
         {
-            await LoadUsers();
-            await RefreshTasks();
+            await CheckUserRole();
+            // 1. Rol bilgisini al
+            await LoadUsers();       // 2. Kullanıcıları yükle
+            await RefreshTasks();    // 3. Taskları yükle
+
+            if (!isAdmin)            // 4. Admin değilse task ekleme kontrollerini gizle
+            {
+                textBoxTaskTitle.Visible = false;
+                textBoxTaskDescription.Visible = false;
+                dateTimePickerDueDate.Visible = false;
+                buttonAddTask.Visible = false;
+                comboBoxUser.Visible = false;
+            }
         }
+
+
+
 
         // Kullanıcıları API'den çek
         private async Task LoadUsers()

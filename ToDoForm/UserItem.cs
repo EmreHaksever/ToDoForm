@@ -2,12 +2,15 @@
 
 namespace ToDoForm
 {
+    using System.Text.Json.Serialization;
+
     public class UserItem
     {
-        [JsonPropertyName("id")]
         public int Id { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("Role")] // API JSON'da "role" ise
+        public string Role { get; set; } = string.Empty;
     }
 }
