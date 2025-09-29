@@ -111,7 +111,24 @@
             // dataGridViewTasks
             // 
             this.dataGridViewTasks.BackgroundColor = Color.WhiteSmoke;
-            this.dataGridViewTasks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTasks.EnableHeadersVisualStyles = false;
+            this.dataGridViewTasks.ColumnHeadersDefaultCellStyle.BackColor = Color.CornflowerBlue;
+            this.dataGridViewTasks.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            this.dataGridViewTasks.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            this.dataGridViewTasks.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTasks.RowHeadersVisible = false;
+            this.dataGridViewTasks.RowsDefaultCellStyle.BackColor = Color.White;
+            this.dataGridViewTasks.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            this.dataGridViewTasks.DefaultCellStyle.SelectionBackColor = Color.CornflowerBlue;
+            this.dataGridViewTasks.DefaultCellStyle.SelectionForeColor = Color.White;
+            this.dataGridViewTasks.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+            this.dataGridViewTasks.RowTemplate.Height = 30;
+            this.dataGridViewTasks.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridViewTasks.GridColor = Color.LightGray;
+            this.dataGridViewTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewTasks.MultiSelect = false;
+            this.dataGridViewTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             this.dataGridViewTasks.Location = new Point(250, 70);
             this.dataGridViewTasks.Name = "dataGridViewTasks";
             this.dataGridViewTasks.RowHeadersWidth = 51;
@@ -139,7 +156,30 @@
             ((System.ComponentModel.ISupportInitialize)this.dataGridViewTasks).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
+
+
+
+            this.buttonLogout = new Button();
+            this.buttonLogout.BackColor = Color.Crimson;
+            this.buttonLogout.ForeColor = Color.White;
+            this.buttonLogout.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            this.buttonLogout.Location = new Point(650, 20); // sağ üst köşe
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new Size(120, 35);
+            this.buttonLogout.TabIndex = 7;
+            this.buttonLogout.Text = "Çıkış Yap";
+            this.buttonLogout.UseVisualStyleBackColor = false;
+            this.buttonLogout.Click += buttonLogout_Click;
+            this.Controls.Add(this.buttonLogout);
+
         }
+
+        // 
+// buttonLogout
+// 
+            
+
 
         #endregion
 
@@ -151,5 +191,7 @@
         private DateTimePicker dateTimePickerDueDate;
         private ComboBox comboBoxUser;
         private Label labelTitle;
+        private Button buttonLogout;
+
     }
 }

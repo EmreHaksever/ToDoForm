@@ -258,6 +258,19 @@ namespace ToDoForm
             }
         }
 
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            // Token sıfırlanır
+            Session.Token = null;
+
+            // Login formunu aç
+            Form1 loginForm = new Form1();
+            loginForm.Show();
+
+            // Dashboard’u kapat
+            this.Close();
+        }
+
 
 
         // ComboBox seçimi değiştiğinde (debug için)
