@@ -22,6 +22,9 @@
             this.labelMessage = new Label();
             this.buttonLogin = new Button();
             this.labelTitle = new Label();
+            this.buttonToggleAddUser = new Button();
+            this.panelAddUser = new Panel();
+
             this.SuspendLayout();
 
             // 
@@ -44,7 +47,7 @@
             this.textBoxUsername.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxUsername.Location = new Point(300, 130);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.PlaceholderText = "Kullanıcı Adı"; // Yeni
+            this.textBoxUsername.PlaceholderText = "Kullanıcı Adı";
             this.textBoxUsername.Size = new Size(200, 30);
             this.textBoxUsername.TabIndex = 0;
 
@@ -56,7 +59,7 @@
             this.textBoxPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPassword.Location = new Point(300, 180);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PlaceholderText = "Şifre"; // Yeni
+            this.textBoxPassword.PlaceholderText = "Şifre";
             this.textBoxPassword.PasswordChar = '●';
             this.textBoxPassword.Size = new Size(200, 30);
             this.textBoxPassword.TabIndex = 1;
@@ -76,27 +79,86 @@
             this.buttonLogin.Click += new EventHandler(this.buttonLogin_Click);
 
             // 
+            // buttonToggleAddUser
+            // 
+            this.buttonToggleAddUser.Text = "➕ Kullanıcı Ekle";
+            this.buttonToggleAddUser.BackColor = Color.LightGray;
+            this.buttonToggleAddUser.ForeColor = Color.Black;
+            this.buttonToggleAddUser.Location = new Point(300, 275); // Login butonunun hemen altı
+            this.buttonToggleAddUser.Size = new Size(200, 30);
+            this.buttonToggleAddUser.Click += (s, e) =>
+            {
+                panelAddUser.Visible = !panelAddUser.Visible;
+            };
+
+            // 
             // labelMessage
             // 
             this.labelMessage.AutoSize = true;
             this.labelMessage.ForeColor = Color.Red;
             this.labelMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMessage.Location = new Point(300, 280);
+            this.labelMessage.Location = new Point(300, 320);
             this.labelMessage.Name = "labelMessage";
             this.labelMessage.Size = new Size(0, 20);
             this.labelMessage.TabIndex = 3;
+
+            // 
+            // panelAddUser
+            // 
+            this.panelAddUser.Size = new Size(250, 220);
+            this.panelAddUser.Location = new Point(550, 130); // Login ekranının sağında
+            this.panelAddUser.BorderStyle = BorderStyle.FixedSingle;
+            this.panelAddUser.Visible = false;
+
+            // Panel içeriği
+            Label labelNewUser = new Label();
+            labelNewUser.Text = "Yeni Kullanıcı Ekle";
+            labelNewUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelNewUser.Location = new Point(10, 10);
+            this.panelAddUser.Controls.Add(labelNewUser);
+
+            textBoxNewUsername = new TextBox();
+            textBoxNewUsername.PlaceholderText = "Kullanıcı Adı";
+            textBoxNewUsername.Location = new Point(10, 40);
+            textBoxNewUsername.Size = new Size(200, 27);
+            this.panelAddUser.Controls.Add(textBoxNewUsername);
+
+            textBoxNewPassword = new TextBox();
+            textBoxNewPassword.PlaceholderText = "Şifre";
+            textBoxNewPassword.Location = new Point(10, 80);
+            textBoxNewPassword.Size = new Size(200, 27);
+            textBoxNewPassword.UseSystemPasswordChar = true;
+            this.panelAddUser.Controls.Add(textBoxNewPassword);
+
+            comboBoxNewRole = new ComboBox();
+            comboBoxNewRole.Items.AddRange(new string[] { "Admin", "User" });
+            comboBoxNewRole.SelectedIndex = 1;
+            comboBoxNewRole.Location = new Point(10, 120);
+            comboBoxNewRole.Size = new Size(200, 28);
+            this.panelAddUser.Controls.Add(comboBoxNewRole);
+
+            buttonAddUser = new Button();
+            buttonAddUser.Text = "Kullanıcı Ekle";
+            buttonAddUser.BackColor = Color.CornflowerBlue;
+            buttonAddUser.ForeColor = Color.White;
+            buttonAddUser.Location = new Point(10, 160);
+            buttonAddUser.Size = new Size(200, 35);
+            buttonAddUser.Click += buttonAddUser_Click;
+            this.panelAddUser.Controls.Add(buttonAddUser);
 
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new SizeF(8F, 20F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(800, 450);
+            this.ClientSize = new Size(850, 450);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.textBoxUsername);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.buttonLogin);
+            this.Controls.Add(this.buttonToggleAddUser);
             this.Controls.Add(this.labelMessage);
+            this.Controls.Add(this.panelAddUser);
             this.Name = "Form1";
             this.Text = "ToDo Application - Login";
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -106,10 +168,16 @@
 
         #endregion
 
+        private TextBox textBoxNewUsername;
+        private TextBox textBoxNewPassword;
+        private ComboBox comboBoxNewRole;
+        private Button buttonAddUser;
         private TextBox textBoxUsername;
         private TextBox textBoxPassword;
         private Label labelMessage;
         private Button buttonLogin;
         private Label labelTitle;
+        private Panel panelAddUser;
+        private Button buttonToggleAddUser;
     }
 }

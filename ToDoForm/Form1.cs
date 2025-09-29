@@ -69,6 +69,57 @@ namespace ToDoForm
             }
         }
 
+        private async void buttonAddUser_Click(object sender, EventArgs e)
+        {
+            string username = textBoxNewUsername.Text;
+            string password = textBoxNewPassword.Text;
+            string role = comboBoxNewRole.SelectedItem?.ToString() ?? "User";
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Kullanıcı adı ve şifre boş olamaz!");
+                return;
+            }
+
+            var newUser = new
+            {
+                username = username,
+                passwordHash = password,
+                role = role
+            };
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Session.Token);
+
+                string json = JsonSerializer.Serialize(newUser);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                try
+                {
+                    HttpResponseMessage response = await client.PostAsync("https://localhost:7136/api/user", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("✅ Kullanıcı başarıyla eklendi!");
+                        textBoxNewUsername.Clear();
+                        textBoxNewPassword.Clear();
+                        comboBoxNewRole.SelectedIndex = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("❌ Kullanıcı eklenemedi! Status: " + response.StatusCode);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
+            }
+        }
+
+
         public class LoginResponse
         {
             public string token { get; set; }
