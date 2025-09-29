@@ -136,6 +136,10 @@ namespace ToDoForm
 
                         var tasks = JsonSerializer.Deserialize<List<TaskItem>>(jsonData, options);
                         dataGridViewTasks.DataSource = tasks;
+
+                        // Status sütununu gizle
+                        if (dataGridViewTasks.Columns["Status"] != null)
+                            dataGridViewTasks.Columns["Status"].Visible = false;
                     }
                     else
                     {
@@ -149,6 +153,7 @@ namespace ToDoForm
                 }
             }
         }
+
 
         private async void buttonAddTask_Click(object sender, EventArgs e)
         {

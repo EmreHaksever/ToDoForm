@@ -36,7 +36,7 @@
             this.labelTitle.Location = new Point(20, 20);
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new Size(180, 41);
-            this.labelTitle.Text = "Dashboard";
+            this.labelTitle.Text = "Tasking";
 
             // 
             // comboBoxUser
@@ -56,7 +56,7 @@
             this.textBoxTaskTitle.ForeColor = Color.Black;
             this.textBoxTaskTitle.Location = new Point(20, 120);
             this.textBoxTaskTitle.Name = "textBoxTaskTitle";
-            this.textBoxTaskTitle.PlaceholderText = "Görev Başlığı";
+            this.textBoxTaskTitle.PlaceholderText = "Task Title";
             this.textBoxTaskTitle.Size = new Size(200, 27);
             this.textBoxTaskTitle.TabIndex = 1;
 
@@ -67,7 +67,7 @@
             this.textBoxTaskDescription.ForeColor = Color.Black;
             this.textBoxTaskDescription.Location = new Point(20, 170);
             this.textBoxTaskDescription.Name = "textBoxTaskDescription";
-            this.textBoxTaskDescription.PlaceholderText = "Görev Açıklaması";
+            this.textBoxTaskDescription.PlaceholderText = "Task Description";
             this.textBoxTaskDescription.Size = new Size(200, 27);
             this.textBoxTaskDescription.TabIndex = 2;
 
@@ -89,7 +89,7 @@
             this.buttonAddTask.Name = "buttonAddTask";
             this.buttonAddTask.Size = new Size(200, 40);
             this.buttonAddTask.TabIndex = 4;
-            this.buttonAddTask.Text = "Görev Ekle";
+            this.buttonAddTask.Text = "Add Task";
             this.buttonAddTask.UseVisualStyleBackColor = false;
             this.buttonAddTask.Click += buttonAddTask_Click;
 
@@ -103,7 +103,7 @@
             this.buttonDeleteTask.Name = "buttonDeleteTask";
             this.buttonDeleteTask.Size = new Size(200, 40);
             this.buttonDeleteTask.TabIndex = 5;
-            this.buttonDeleteTask.Text = "Görev Sil";
+            this.buttonDeleteTask.Text = "Delete Task";
             this.buttonDeleteTask.UseVisualStyleBackColor = false;
             this.buttonDeleteTask.Click += buttonDeleteTask_Click;
 
@@ -168,7 +168,7 @@
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new Size(120, 35);
             this.buttonLogout.TabIndex = 7;
-            this.buttonLogout.Text = "Çıkış Yap";
+            this.buttonLogout.Text = "Log Out";
             this.buttonLogout.UseVisualStyleBackColor = false;
             this.buttonLogout.Click += buttonLogout_Click;
             this.Controls.Add(this.buttonLogout);

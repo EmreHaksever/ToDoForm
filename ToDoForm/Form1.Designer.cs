@@ -47,7 +47,7 @@
             this.textBoxUsername.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxUsername.Location = new Point(300, 130);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.PlaceholderText = "Kullanıcı Adı";
+            this.textBoxUsername.PlaceholderText = "User Name";
             this.textBoxUsername.Size = new Size(200, 30);
             this.textBoxUsername.TabIndex = 0;
 
@@ -59,7 +59,7 @@
             this.textBoxPassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxPassword.Location = new Point(300, 180);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PlaceholderText = "Şifre";
+            this.textBoxPassword.PlaceholderText = "Password";
             this.textBoxPassword.PasswordChar = '●';
             this.textBoxPassword.Size = new Size(200, 30);
             this.textBoxPassword.TabIndex = 1;
@@ -74,14 +74,14 @@
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new Size(200, 35);
             this.buttonLogin.TabIndex = 2;
-            this.buttonLogin.Text = "Giriş Yap";
+            this.buttonLogin.Text = "Log In";
             this.buttonLogin.UseVisualStyleBackColor = false;
             this.buttonLogin.Click += new EventHandler(this.buttonLogin_Click);
 
             // 
             // buttonToggleAddUser
             // 
-            this.buttonToggleAddUser.Text = "➕ Kullanıcı Ekle";
+            this.buttonToggleAddUser.Text = "➕ Add User";
             this.buttonToggleAddUser.BackColor = Color.LightGray;
             this.buttonToggleAddUser.ForeColor = Color.Black;
             this.buttonToggleAddUser.Location = new Point(300, 275); // Login butonunun hemen altı
@@ -112,19 +112,19 @@
 
             // Panel içeriği
             Label labelNewUser = new Label();
-            labelNewUser.Text = "Yeni Kullanıcı Ekle";
+            labelNewUser.Text = "Add New User";
             labelNewUser.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             labelNewUser.Location = new Point(10, 10);
             this.panelAddUser.Controls.Add(labelNewUser);
 
             textBoxNewUsername = new TextBox();
-            textBoxNewUsername.PlaceholderText = "Kullanıcı Adı";
+            textBoxNewUsername.PlaceholderText = "User Name";
             textBoxNewUsername.Location = new Point(10, 40);
             textBoxNewUsername.Size = new Size(200, 27);
             this.panelAddUser.Controls.Add(textBoxNewUsername);
 
             textBoxNewPassword = new TextBox();
-            textBoxNewPassword.PlaceholderText = "Şifre";
+            textBoxNewPassword.PlaceholderText = "Password";
             textBoxNewPassword.Location = new Point(10, 80);
             textBoxNewPassword.Size = new Size(200, 27);
             textBoxNewPassword.UseSystemPasswordChar = true;
@@ -138,7 +138,7 @@
             this.panelAddUser.Controls.Add(comboBoxNewRole);
 
             buttonAddUser = new Button();
-            buttonAddUser.Text = "Kullanıcı Ekle";
+            buttonAddUser.Text = "Add User";
             buttonAddUser.BackColor = Color.CornflowerBlue;
             buttonAddUser.ForeColor = Color.White;
             buttonAddUser.Location = new Point(10, 160);
