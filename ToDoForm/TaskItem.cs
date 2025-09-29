@@ -16,14 +16,14 @@ namespace ToDoForm
         public string Description { get; set; }
 
         [JsonPropertyName("status")]
-        [JsonConverter(typeof(StatusConverter))]  // Bu satırı ekleyin
+        [JsonConverter(typeof(StatusConverter))]  
         public int Status { get; set; }
 
         [JsonPropertyName("dueDate")]
         public DateTime DueDate { get; set; }
 
         [JsonPropertyName("userName")]
-        public string UserName { get; set; }
+        public string userName { get; set; }
 
         public string StatusText
         {
@@ -40,7 +40,7 @@ namespace ToDoForm
         }
     }
 
-    // Custom converter sınıfını aynı dosyaya ekleyin
+    
     public class StatusConverter : JsonConverter<int>
     {
         public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

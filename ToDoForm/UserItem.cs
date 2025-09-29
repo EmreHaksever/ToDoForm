@@ -1,16 +1,19 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ToDoForm
+public class UserItem
 {
-    using System.Text.Json.Serialization;
+    public int Id { get; set; }
 
-    public class UserItem
+    [JsonPropertyName("username")] // API JSON alan adıyla eşleştir
+    public string Username { get; set; } = string.Empty;
+
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("role")]
+    public string Role { get; set; } = string.Empty;
+
+    public override string ToString()
     {
-        public int Id { get; set; }
-        public string Username { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-
-        [JsonPropertyName("Role")] // API JSON'da "role" ise
-        public string Role { get; set; } = string.Empty;
+        return Username; // ComboBox artık bunu gösterecek
     }
 }

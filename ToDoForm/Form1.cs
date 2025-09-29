@@ -72,8 +72,8 @@ namespace ToDoForm
         private async void buttonAddUser_Click(object sender, EventArgs e)
         {
             string username = textBoxNewUsername.Text;
-            string password = textBoxNewPassword.Text;
-            string role = comboBoxNewRole.SelectedItem?.ToString() ?? "User";
+    string password = textBoxNewPassword.Text;
+    string role = comboBoxNewRole.SelectedItem?.ToString() ?? "User";
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {

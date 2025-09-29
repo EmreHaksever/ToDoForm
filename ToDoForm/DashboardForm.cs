@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,10 +16,10 @@ namespace ToDoForm
             InitializeComponent();
 
             this.Load += DashboardForm_Load;
-            
             comboBoxUser.SelectedIndexChanged += comboBoxUser_SelectedIndexChanged;
         }
-        private bool isAdmin = false; // form içinde bir field olarak tanımla
+
+        private bool isAdmin = false;
 
         private async Task CheckUserRole()
         {
@@ -29,43 +30,34 @@ namespace ToDoForm
 
                 try
                 {
-                    // Token ile kendi kullanıcı bilgilerini al
                     HttpResponseMessage response = await client.GetAsync("https://localhost:7136/api/user/me");
                     if (response.IsSuccessStatusCode)
                     {
                         string jsonData = await response.Content.ReadAsStringAsync();
 
-                        // Tek kullanıcı objesi olarak deserialize et
                         var currentUser = JsonSerializer.Deserialize<UserItem>(jsonData, new JsonSerializerOptions
                         {
                             PropertyNameCaseInsensitive = true
                         });
 
                         if (currentUser != null)
-                        {
                             isAdmin = currentUser.Role.Equals("Admin", StringComparison.OrdinalIgnoreCase);
-                        }
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Rol bilgisi alınamadı: " + ex.Message);
-                    MessageBox.Show("Role: " + isAdmin);
                 }
             }
         }
 
-
-
-
         private async void DashboardForm_Load(object sender, EventArgs e)
         {
             await CheckUserRole();
-            // 1. Rol bilgisini al
-            await LoadUsers();       // 2. Kullanıcıları yükle
-            await RefreshTasks();    // 3. Taskları yükle
+            await LoadUsers();
+            await RefreshTasks();
 
-            if (!isAdmin)            // 4. Admin değilse task ekleme kontrollerini gizle
+            if (!isAdmin)
             {
                 textBoxTaskTitle.Visible = false;
                 textBoxTaskDescription.Visible = false;
@@ -73,13 +65,8 @@ namespace ToDoForm
                 buttonAddTask.Visible = false;
                 comboBoxUser.Visible = false;
             }
-
         }
 
-
-
-
-        // Kullanıcıları API'den çek
         private async Task LoadUsers()
         {
             using (HttpClient client = new HttpClient())
@@ -93,13 +80,20 @@ namespace ToDoForm
                     if (response.IsSuccessStatusCode)
                     {
                         string jsonData = await response.Content.ReadAsStringAsync();
-                        var users = JsonSerializer.Deserialize<List<UserItem>>(jsonData);
+                        var users = JsonSerializer.Deserialize<List<UserItem>>(jsonData, new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
 
                         if (users != null && users.Count > 0)
                         {
+                            // Debug: API’den gelen kullanıcıları yazdır
+                            foreach (var u in users)
+                                Console.WriteLine($"Id: {u.Id}, Username: {u.Username}, Name: {u.Name}, Role: {u.Role}");
+
                             comboBoxUser.DataSource = users;
-                            comboBoxUser.DisplayMember = "Username";
-                            comboBoxUser.ValueMember = "Id";
+                            comboBoxUser.DisplayMember = "Username"; // Görünür alan
+                            comboBoxUser.ValueMember = "Id";         // Seçilen değer
                             comboBoxUser.SelectedIndex = 0;
                         }
                         else
@@ -120,13 +114,13 @@ namespace ToDoForm
             }
         }
 
-        // Task listesini çek
         private async Task RefreshTasks()
         {
             using (HttpClient client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Session.Token);
+
                 try
                 {
                     HttpResponseMessage response = await client.GetAsync("https://localhost:7136/api/task");
@@ -134,11 +128,10 @@ namespace ToDoForm
                     {
                         string jsonData = await response.Content.ReadAsStringAsync();
 
-                        // JsonSerializerOptions ekleyin
                         var options = new JsonSerializerOptions
                         {
                             PropertyNameCaseInsensitive = true,
-                            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString
+                            NumberHandling = JsonNumberHandling.AllowReadingFromString
                         };
 
                         var tasks = JsonSerializer.Deserialize<List<TaskItem>>(jsonData, options);
@@ -157,10 +150,8 @@ namespace ToDoForm
             }
         }
 
-        // Yeni task ekle
         private async void buttonAddTask_Click(object sender, EventArgs e)
         {
-            // Title ve Description boş mu kontrol et
             if (string.IsNullOrWhiteSpace(textBoxTaskTitle.Text))
             {
                 MessageBox.Show("Task başlığını giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -182,7 +173,7 @@ namespace ToDoForm
                     title = textBoxTaskTitle.Text,
                     description = textBoxTaskDescription.Text,
                     dueDate = dateTimePickerDueDate.Value,
-                    status = 0,  // 0 = Todo
+                    status = 0,
                     userId = selectedUser.Id
                 };
 
@@ -201,8 +192,6 @@ namespace ToDoForm
                     {
                         MessageBox.Show("✅ Task eklendi!");
                         await RefreshTasks();
-
-                        // Formu temizle
                         textBoxTaskTitle.Clear();
                         textBoxTaskDescription.Clear();
                         dateTimePickerDueDate.Value = DateTime.Now;
@@ -227,7 +216,6 @@ namespace ToDoForm
                 return;
             }
 
-            // Seçili task'ın Id'sini al
             if (dataGridViewTasks.CurrentRow.DataBoundItem is TaskItem selectedTask)
             {
                 var confirm = MessageBox.Show(
@@ -261,26 +249,32 @@ namespace ToDoForm
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            // Token sıfırlanır
             Session.Token = null;
-
-            // Login formunu aç
             Form1 loginForm = new Form1();
             loginForm.Show();
-
-            // Dashboard’u kapat
             this.Close();
         }
 
-
-
-        // ComboBox seçimi değiştiğinde (debug için)
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxUser.SelectedItem is UserItem user)
-            {
-                Console.WriteLine($"Seçilen kullanıcı: {user.Name} ({user.Id})");
-            }
+                Console.WriteLine($"Seçilen kullanıcı: {user.Username} ({user.Id})");
         }
+    }
+
+    // Kullanıcı sınıfı
+    public class UserItem
+    {
+        public int Id { get; set; }
+
+        [JsonPropertyName("username")]
+        public string Username { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
+        [JsonPropertyName("role")]
+        public string Role { get; set; } = string.Empty;
+
+        public override string ToString() => Username; // ComboBox görünürlük için
     }
 }
