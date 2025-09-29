@@ -165,6 +165,47 @@ namespace ToDoForm
             }
         }
 
+        private async void buttonDeleteTask_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTasks.CurrentRow == null)
+            {
+                MessageBox.Show("Silmek için bir task seçiniz.");
+                return;
+            }
+
+            // Seçili task'ın Id'sini al
+            if (dataGridViewTasks.CurrentRow.DataBoundItem is TaskItem selectedTask)
+            {
+                var confirm = MessageBox.Show(
+                    $"'{selectedTask.Title}' taskını silmek istediğinize emin misiniz?",
+                    "Onay",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    using (HttpClient client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Authorization =
+                            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Session.Token);
+
+                        HttpResponseMessage response = await client.DeleteAsync($"https://localhost:7136/api/task/{selectedTask.Id}");
+                        if (response.IsSuccessStatusCode)
+                        {
+                            MessageBox.Show("✅ Task silindi!");
+                            await RefreshTasks();
+                        }
+                        else
+                        {
+                            string result = await response.Content.ReadAsStringAsync();
+                            MessageBox.Show("❌ Task silinemedi: " + result);
+                        }
+                    }
+                }
+            }
+        }
+
+
 
         // ComboBox seçimi değiştiğinde (debug için)
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)

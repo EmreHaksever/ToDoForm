@@ -45,6 +45,20 @@
             buttonAddTask.Text = "Add Task";
             buttonAddTask.UseVisualStyleBackColor = false;
             buttonAddTask.Click += buttonAddTask_Click;
+
+            // buttonDeleteTask
+            buttonDeleteTask = new Button();
+            buttonDeleteTask.Location = new Point(20, 280);
+            buttonDeleteTask.Size = new Size(200, 40);
+            buttonDeleteTask.Name = "buttonDeleteTask";
+            buttonDeleteTask.TabIndex = 6;
+            buttonDeleteTask.Text = "Delete Task";
+            buttonDeleteTask.UseVisualStyleBackColor = true;
+            buttonDeleteTask.Click += buttonDeleteTask_Click;
+
+            
+            Controls.Add(buttonDeleteTask);
+
             // 
             // textBoxTaskTitle
             // 
@@ -103,5 +117,6 @@
         private TextBox textBoxTaskDescription;
         private DateTimePicker dateTimePickerDueDate;
         private ComboBox comboBoxUser;
+        private Button buttonDeleteTask;
     }
 }
