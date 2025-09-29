@@ -106,6 +106,21 @@ namespace ToDoForm
         // Yeni task ekle
         private async void buttonAddTask_Click(object sender, EventArgs e)
         {
+            // Title ve Description boş mu kontrol et
+            if (string.IsNullOrWhiteSpace(textBoxTaskTitle.Text))
+            {
+                MessageBox.Show("Task başlığını giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxTaskTitle.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(textBoxTaskDescription.Text))
+            {
+                MessageBox.Show("Task açıklamasını giriniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxTaskDescription.Focus();
+                return;
+            }
+
             if (comboBoxUser.SelectedItem is UserItem selectedUser)
             {
                 var newTask = new
@@ -114,7 +129,7 @@ namespace ToDoForm
                     description = textBoxTaskDescription.Text,
                     dueDate = dateTimePickerDueDate.Value,
                     status = 0,  // 0 = Todo
-                    userId = selectedUser.Id  // userName yerine userId gönderin
+                    userId = selectedUser.Id
                 };
 
                 using (HttpClient client = new HttpClient())
@@ -149,6 +164,7 @@ namespace ToDoForm
                 MessageBox.Show("Lütfen bir kullanıcı seçin.");
             }
         }
+
 
         // ComboBox seçimi değiştiğinde (debug için)
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
